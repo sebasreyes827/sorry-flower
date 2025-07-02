@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I’m Sorry</Melanie >
+  <style>
+    body {
+      background: linear-gradient(#fff0f5, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h1 {
+      color: #cc0055;
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      color: #444;
+    }
+
+    .message-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    canvas {
+      display: block;
+      margin: 0 auto;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="message-box">
+    <h1>I’m So Sorry</h1>
+    <p>
+      To lose your trust and be on the brink of losing you, it has all caught up to me and I promise I was on my path way and I was just struggling I really was and I am changing but I can show you proof that I am if you give me one final chance please melanie, I'm sorry melanie
+  </div>
+
+  <canvas id="flowerCanvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById("flowerCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawFlower(x, y, size, petalColor) {
+      ctx.save();
+      ctx.translate(x, y);
+      for (let i = 0; i < 6; i++) {
+        ctx.beginPath();
+        ctx.rotate((Math.PI * 2) / 6);
+        ctx.fillStyle = petalColor;
+        ctx.ellipse(0, size / 2, size / 4, size, 0, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(0, 0, size / 5, 0, 2 * Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function randomFlower() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const size = 20 + Math.random() * 20;
+      const colors = ["#FF69B4", "#FF1493", "#DB7093", "#FFC0CB"];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      drawFlower(x, y, size, color);
+    }
+
+    // Draw 30 flowers
+    for (let i = 0; i < 30; i++) {
+      randomFlower();
+    }
+
+    // Add click to grow more
+    canvas.addEventListener("click", () => {
+      for (let i = 0; i < 10; i++) {
+        randomFlower();
+      }
+    });
+  </script>
+</body>
+</html>
